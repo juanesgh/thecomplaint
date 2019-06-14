@@ -11,6 +11,10 @@
 <div class="c" >
   <titulo><%= @post.title %><sub><small><small><mark> <%= link_to 'By  ' + @user.find_by(id: @post.user_id).name , @user.find_by(id: @post.user_id) %></mark></small></small></sub></titulo>
 <hr>
+<div class = "c">
+  Solved? <%= @post.solved%>
+  Open? <%= @post.open%>
+</div>
 <div class= "r">
     <% if current_user.admin or current_user.superadmin or current_user.id == @post.user_id %>
         <%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary btn-md"%>
