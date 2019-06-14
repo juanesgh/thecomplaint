@@ -10,7 +10,7 @@ class BlacklistsController < ApplicationController
       redirect_to User.find(current_user.id)
     end
   end
-
+  
   def redeem
     @u = User.find(params[:user])
     @u.update(blacklist: false)

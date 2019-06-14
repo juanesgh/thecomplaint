@@ -7,9 +7,6 @@
 <body>
     <titulo>Administration System</titulo>
     <hr>
-    <div align="right">
-    <button class="btn btn-primary btn-md" onclick="window.location.href=#">New Admin</button>
-    </div>
     <br>
     <table align="center">
       <tr>
@@ -19,7 +16,6 @@
         <th>Make/Revoke Admin</th>
         <th>Make/Revoke SuperAdmin</th>
         <th>Edit</th>
-        <th>Delete</th>
         <th>Ban</th>
         <th>Blacklist</th>
       </tr>
@@ -42,6 +38,12 @@
               <% else %>
                 <%= button_to "SuperAdmin", makesuperadmin_path(:user_id =>  u.id), :class => "btn btn-primary btn-md" %>
               <% end %>
+            </td>
+            <td>
+              <%= link_to "Edit", edit_user_path(u), class: "btn btn-primary btn-md"%>
+            </td>
+            <td>
+              <%= link_to "Blacklist", blacklist_path(), class: "btn btn-primary btn-md"%>
             </td>
           </tr>
         <% end %>
