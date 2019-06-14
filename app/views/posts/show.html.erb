@@ -23,6 +23,16 @@
     <% if current_user.admin or current_user.superadmin or current_user.id == @post.user_id %>
       <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-md" %>
     <% end %>
+    <tr>
+      <% if current_user.id == @post.user_id or current_user.admin or current_user.superadmin%>
+        <%= link_to "Solved Post", solvedpost_path(:post_id => @post.id), data: { confirm: "Are you sure?" }, class: "btn btn-primary btn-md" %>
+      <% end %>
+    </tr>
+    <tr>
+      <% if current_user.id == @post.user_id or current_user.admin or current_user.superadmin%>
+        <%= link_to "Close Post", closepost_path(:post_id => @post.id), data: { confirm: "Are you sure?" }, class: "btn btn-primary btn-md" %>
+      <% end %>
+    </tr>
 </div>
 
 

@@ -149,7 +149,27 @@ class PostsController < ApplicationController
       com = params[:comment]
       Comment.find_by(id: com).update(visible: false)
     else
-      flash[:success] = "No tienes los permisos necesarios para realizar esta accion"
+      flash[:failure] = "Not authorized"
+    end
+    redirect_to Post.find(@pos1)
+  end
+
+  def closepost
+    @pos1 = params[:post_id]
+    if current_user.admin or current_user.superadmin or current_user.id == Post.find(@pos1).user_id
+      Post.find_by(id: @pos1).update(open: false)
+    else
+      flash[:failure] = "Not authorized"
+    end
+    redirect_to Post.find(@pos1)
+  end
+
+  def solvedpost
+    @pos1 = params[:post_id]
+    if current_user.admin or current_user.superadmin or current_user.id == Post.find(@pos1).user_id
+      Post.find_by(id: @pos1).update(solved: true)
+    else
+      flash[:failure] = "Not authorized"
     end
     redirect_to Post.find(@pos1)
   end

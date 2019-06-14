@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   post '/postsearchs', to: 'postsearchs#search'
   get '/postsearchs', to: 'postsearchs#postsearch'
+  get '/solvedpost', to: 'posts#solvedpost'
+  get '/closepost', to: 'posts#closepost'
   
   get '/likes', to: 'posts#likes'
   get '/dislikes', to: 'posts#dislikes'
