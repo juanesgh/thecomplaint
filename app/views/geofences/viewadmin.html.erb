@@ -6,7 +6,7 @@
             <th>Delete</th>
         </tr>
             <%if @fence != nil %>
-                <% if !@fence.is_a?(UserPlace) %>
+                <% if !@fence[0].is_a?(UserPlace) %>
                     <% @fence.each do |f| %>
                         <tr>
                             <td><%= f.location %></td>
@@ -15,8 +15,9 @@
                     <% end %>
                 <% else %>
                     <tr>
-                        <td><%= @fence.location %></td>
+                        <td><%= @fence[0].location %></td>
                         <td><%= button_to "Delete", def_path(:fence_id => @fence.id, :user_id => @usr_id), class: "btn btn-danger btn-md"%>
+                    </tr>
                 <% end %>
             <% end %>
     </table>
