@@ -57,7 +57,7 @@ Rails.application.routes.draw do
   get '/geofences', to: 'geofences#admins'
   get '/geofences/viewadmin', to: 'geofences#viewadmin'
   get '/geofences/addfences', to: 'geofences#addfences'
-  post '/def', to: 'geofences#removefence'
+  post '/removefence', to: 'geofences#removefence'
   get '/as', to: 'geofences#as'
   post '/checkfence', to: 'geofences#checkfence'
 
