@@ -1,0 +1,9 @@
+<div class = "c">
+    <% if user_signed_in? %>
+        <%= form_tag(createflag_path(:post_id => @pos)) do %>
+        <%= text_field_tag "Comment", :comment %>
+        <%= text_field_tag "Category", :category %>
+        <%= submit_tag 'Send', :class => "btn btn-primary btn-md" %>
+        <% end %>
+    <% end %>
+</div>

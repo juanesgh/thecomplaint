@@ -1,0 +1,9 @@
+<div class = "c">
+    <TC>Post flagged</TC>
+    <% @post.each do |p|%>
+        <tr>
+            <td><%= link_to Post.find(p.post_id).title, viewflag_path(:post_id => p.post_id), class: "btn btn-primary btn-md"%></td>
+            <td><%= button_to "Dumpster", makedumpster_path(:post_id => p.post_id), method: :patch, class: "btn btn-danger btn-md" %>
+        </tr>
+    <% end %>
+</div>

@@ -13,6 +13,7 @@
 <hr>
 <div class = "c">
   Solved? <%= @post.solved%>
+  <br>
   Open? <%= @post.open%>
 </div>
 <div class= "r">
@@ -44,7 +45,7 @@
   <nav>
     <ul>
       <%= link_to "Like", likes_path(:post => @post.id) %>/<%= link_to "Dislike", dislikes_path(:post => @post.id) %>
-      <li><a href="#">Flag as Inappropriate</a></li>
+      <%= link_to "Flag as inapropirate", makeflag_path(:post_id => @post.id)%>
     </ul>
     <p>Likes: <%= @likes%></p>
     <p>DisLikes: <%= @dislikes%></p>

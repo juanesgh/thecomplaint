@@ -63,7 +63,10 @@ Rails.application.routes.draw do
   get '/as', to: 'geofences#as'
   post '/checkfence', to: 'geofences#checkfence'
 
-
+  get 'makeflag', to: 'flagposts#makeflag'
+  get 'viewflag', to: 'flagposts#viewflag'
+  get 'viewpost', to: 'flagposts#viewpost'
+  post 'createflag', to: 'flagposts#createglflag'
 
   post '/users', to: 'users#create'
   post '/posts', to: 'posts#create'
@@ -73,6 +76,8 @@ Rails.application.routes.draw do
 
   patch '/users', to: 'users#update'
   patch '/posts', to: 'posts#update'
+
+  
 
 
 
