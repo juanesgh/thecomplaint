@@ -6,11 +6,12 @@
             <th>Delete</th>
         </tr>
         <%if @fence != nil %>
-            <tr>
-                <% @fence.each do |f|%>
+            <% @fence.each do |f|%>
+                <tr>
                     <td><%= f.location %></td>
                     <td><%= button_to "Delete", removefence_path(:fence_id => f.id, :user_id => @usr_id), class: "btn btn-danger btn-md" %>
-                <% end %>
+                </tr>
+            <% end %>
             </tr>
         <% end %>
         
