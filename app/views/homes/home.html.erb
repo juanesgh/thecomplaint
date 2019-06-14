@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HOME</title>
+</head>
+<body>
+    <div class = "c">
+        <TC>The Complaint</TC>
+    </div>
+        
+    <br>
+    <br>
+    <br>
+    <br>
+    <% if !user_signed_in? %>
+        <div class= "c">
+            <a href="passrec">Forgot your password?</a>
+            <br>
+            <br>
+            <%= button_to 'Log In', '/users/sign_in', class: "bttn1"%>
+
+            <br>
+            <button class="button2">Sign in with Google</button>
+        </div>
+    <% else %>
+        <table>
+            <div class = "c">
+                <%= link_to "Posts", posts_index_path(), class:  "btn btn-primary btn-md" %>
+            </div>
+        </table>
+    <% end %>
+</body>
+</html>
+
+

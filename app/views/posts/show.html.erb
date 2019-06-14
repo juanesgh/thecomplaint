@@ -1,0 +1,117 @@
+<html lang="en">
+<head>
+  <title>CSS Template</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<hr>
+
+<body>
+
+<div class="c" >
+  <titulo><%= @post.title %><sub><small><small><mark> <%= link_to 'By  ' + @user.find_by(id: @post.user_id).name , @user.find_by(id: @post.user_id) %></mark></small></small></sub></titulo>
+<hr>
+<div class= "r">
+    <% if current_user.admin or current_user.superadmin or current_user.id == @post.user_id %>
+        <%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary btn-md"%>
+    <% end %>
+</div>
+<div class= "r">
+    <% if current_user.admin or current_user.superadmin or current_user.id == @post.user_id %>
+      <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-md" %>
+    <% end %>
+</div>
+
+
+<section>
+  <nav>
+    <ul>
+      <%= link_to "Like", likes_path(:post => @post.id) %>/<%= link_to "Dislike", dislikes_path(:post => @post.id) %>
+      <li><a href="#">Flag as Inappropriate</a></li>
+    </ul>
+    <p>Likes: <%= @likes%></p>
+    <p>DisLikes: <%= @dislikes%></p>
+  </nav>
+  
+  <article>
+    <h1>Description</h1>
+    <%= @post.description %>
+  </article>
+
+  <article>
+  <h1>Images</h1>
+  <% (0...@post.postimages.count).each do |postimage| %>
+    <%= image_tag(@post.postimages[postimage].variant(resize: "200x200")) %>
+  <% end %>
+  </article>
+
+  <article>
+    <h1>Location</h1>
+    <div class= "c">
+        <style>
+        
+        #map {
+            height: 200px;  
+            width: 100%;  
+        }
+        </style>
+    
+        <div id="map"></div>
+            <script>
+                function initMap() {
+                var uluru = {lat: -25.344, lng: 131.036};
+                var map = new google.maps.Map(
+                document.getElementById('map'), {zoom: 4, center: uluru});
+                var marker = new google.maps.Marker({position: uluru, map: map});
+                }
+            </script>
+            
+            <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9EocpLO0L43BJBXB6LCr8MGkfxLH2Ie8&callback=initMap">
+            </script>
+    </div>
+  </article>
+
+  <article>
+    <h1>Files</h1>
+    <% (0...@post.files.count).each do |file| %>
+      <%= link_to 'Download', @post.files[file], download:"" %>
+    <% end %>
+  </article>
+
+  </div>
+  
+</section>
+<footer>
+  <div class = "c"><h1>Comments</h1></div>
+  <table class = "scroll" align = "center">
+    <tbody>
+      <% @comments.each do |cm| %>
+        <% if cm.visible%>
+          <tr>
+            <td><%= link_to @user.find_by(id: cm.user_id).name, @user.find_by(id: cm.user_id)%>:  </td>
+            <td><%= cm.created_at %>:  </td>
+            <td><%= cm.comment %></td>
+            <td><%= (UserLikeComment.all.where(comment_id: cm.id).where(like: true)).length %>
+            <td><%= (UserLikeComment.all.where(comment_id: cm.id).where(like: false)).length %>
+            <td><%= button_to "Like", commentLike_path(:post => @post.id, :comment => cm.id), :class => "btn btn-success btn-md" %>
+            <td><%= button_to "Dislike", commentDisLike_path(:post => @post.id, :comment => cm.id), :class => "btn btn-danger btn-md" %>
+            <% if current_user.admin or current_user.superadmin %>
+              <td><%= link_to "Hide", hideComment_path(:post => @post.id, :comment => cm.id) %>
+            <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <div class = "c"><li class = "c"> Add new comment.</li></div>
+  <div class = "c">
+    <%= form_for([@post, @post.comments.build]) do |f| %>
+      <%= f.text_area :comment %>
+      <%= f.submit "Send", :class => "btn btn-success btn-md"%>
+    <% end %>
+  </div>
+</footer>
+
+</body>
+</html>

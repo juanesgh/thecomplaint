@@ -1,0 +1,26 @@
+<div class = 'c'>
+    <table class = "scroll">
+        <TC><%= User.find(@usr_id).name%></TC>
+        <tr>
+            <th>Fence</th>
+            <th>Delete</th>
+        </tr>
+            <%if @fence != nil %>
+                <% if !@fence.is_a?(UserPlace) %>
+                    <% @fence.each do |f| %>
+                        <tr>
+                            <td><%= f.location %></td>
+                            <td><%= button_to "Delete", geofences_removefence_path(:fence_id => f.id, :user_id => @usr_id), class: "btn btn-danger btn-md"%>
+                        </tr>
+                    <% end %>
+                <% else %>
+                    <tr>
+                        <td><%= @fence.location %></td>
+                        <td><%= button_to "Delete", def_path(:fence_id => @fence.id, :user_id => @usr_id), class: "btn btn-danger btn-md"%>
+                <% end %>
+            <% end %>
+    </table>
+    <div class = "c">
+        <%= link_to "Add Fence", as_path(:user_id => @usr_id), class: "btn btn-success btn-md"%>
+    </div>
+</div>

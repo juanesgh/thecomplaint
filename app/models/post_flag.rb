@@ -1,0 +1,2 @@
+class PostFlag < ApplicationRecord
+end

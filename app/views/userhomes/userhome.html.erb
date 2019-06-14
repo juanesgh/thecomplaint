@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <titulo>Hello, <%= current_user.name %></titulo>
+    
+    <hr>
+    
+    <div class="row">
+      <div class="col-md-10"></div>
+      <div class="col-md-2">
+        <button class="btn btn-primary btn-md" onclick="window.location.href='userprofile'">Profile</button>
+      </div>
+    </div>
+    <div align="center">
+    <button class="btn btn-primary btn-md" onclick="window.location.href='posts/new'">New Post</button>
+    </div>
+    <br>
+    
+    <br>
+    <div class="row">
+      <div class="col-md-5"></div>
+      <div class="col-md-2">
+        <div align="center">
+            <input type="text" class= "form-control" placeholder="Search User / Post...">
+        </div>
+      </div>
+      <div class="col-md-5"></div>
+    </div>
+    <br>
+    <table align="center">
+      <tr>
+        <th>User</th>
+        <th>Post Title</th>
+        <th>Action</th>
+      </tr>
+      <tr>
+        <% @posts.each do |p|%>
+          <tr><td><%= User.find_by(id: p.user_id).name%></td>
+          <td><%= p.title %></td>
+          <td><%= link_to 'View', p, class: "btn btn-primary btn-md"%></td></tr>
+        <% end %>
+        
+      </tr>
+    </table>
+</body>
+ 
+</html>

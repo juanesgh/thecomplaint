@@ -1,0 +1,2 @@
+module PostsearchsHelper
+end

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Admin</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <titulo>User Administration</titulo>
+    
+    <hr>
+    <div align="right">
+    <button class="btn btn-primary btn-md" onclick="window.location.href='users/new'">New User</button>
+    </div>
+    <br>
+    <table align="center" class = "scroll">
+      <tr>
+        <th>User</th>
+        <th>Role</th>
+        <th>Last Access</th>
+        <th>Password</th>
+        <th>Delete</th>
+        <th>Blacklist</th>
+        <th>Bann</th>
+      </tr>
+      <% @users.each do |u|%>
+        <% if !u.deleted %>
+          <tr>
+            <td><%= u.name %></td>
+            <td>
+              <% if u.admin %>
+                Administrator
+              <% elsif u.superadmin %>
+                Super Administrator
+              <% else %>
+                User
+              <% end %>
+            </td>
+            <td>3/3/2019</td>
+            <td>
+              <% if (!u.admin and !u.superadmin) or (current_user.superadmin) %>
+                <%= button_to "Change Password", changepassword_path(:user => u.id), :class => "btn btn-primary btn-md" %>
+              <% end %>
+            </td>
+            <td>
+              <% if (!u.admin and !u.superadmin) or (current_user.superadmin) %>
+                <%= button_to "Delete", deleteuser_path(:user => u.id), :class => "btn btn-danger btn-md" %>
+              <% end %>
+            </td>
+            <td>
+              <% if (!u.admin and !u.superadmin) or (current_user.superadmin) %>
+                <%= button_to "Blacklist", blacklistuser_path(:user => u.id), :method => :patch, :class => "btn btn-danger btn-md" %>
+              <% end %>
+            </td>
+            <td>
+              <% if (!u.admin and !u.superadmin) or (current_user.superadmin) %>
+                <%= button_to "Ban", banuser_path(:user => u.id), :class => "btn btn-danger btn-md" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+    <br>
+</body>
+
+ 
+</html>

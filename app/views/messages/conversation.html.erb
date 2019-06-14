@@ -1,0 +1,5 @@
+<h1><strong>Conversation</strong><p>
+
+<% @message.each do |msg|%>
+  <p><%= @usr.find_by(id: msg.sender_id).nick%>  <%= msg.created_at%>: <%= msg.message%></p>
+<% end %>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profie</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <titulo><%= @user.name %>'s Profile</titulo>
+        <div align="right">
+    
+    </div>
+    <hr>
+    <div class= "r">
+        <% if current_user.admin or current_user.superadmin or current_user == @user %>
+            <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary btn-md"%>
+        <% end %>
+      </div>
+    
+
+    <div class= "c">
+        <% if @user.avatar.attached? %>
+            <%=image_tag @user.avatar.variant(resize: "100x100") %>
+            <% else %>
+            No Image
+            <% end %>
+        <br>
+        <br>
+
+        User Name: 
+            <%= @user.name %> <%= @user.lastname %><br>
+        <br>
+        Email: 
+            <%= @user.email %><br>
+        <br>
+        City: 
+            <%= @user.city %><br>
+        <br>
+        Location: 
+        <br>
+        <br>
+    </div>
+
+    <div class= "c">
+        <style>
+        
+        #map {
+            height: 200px;  
+            width: 100%;  
+        }
+        </style>
+    
+        <div id="map"></div>
+            <script>
+                function initMap() {
+                var uluru = {lat: -25.344, lng: 131.036};
+                var map = new google.maps.Map(
+                document.getElementById('map'), {zoom: 4, center: uluru});
+                var marker = new google.maps.Marker({position: uluru, map: map});
+                }
+            </script>
+            
+            <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9EocpLO0L43BJBXB6LCr8MGkfxLH2Ie8&callback=initMap">
+            </script>
+    </div>
+    <div class= "c">
+        
+        <br>
+        Country: 
+            <%= @user.country %><br>
+        <br>
+        <p>Bio</p>
+        <br>
+            <textarea rows="5" cols="60">
+            </textarea>
+        <br>
+            <br>
+        <br>
+        <br>
+
+    <table align="center">
+        <tr>
+            <th>Post Title</th>
+            <th>Action</th>
+        </tr>
+        <% @post.each do |p|%>
+            <tr>
+                <td><%= p.title %></td>
+                <td><%= link_to 'View', p, class: "btn btn-primary btn-md"%></td>
+            </tr>
+        <% end %>
+    </table>
+
+</body>
+
+    <br>
+    <br>
+    <button class="btn btn-primary btn-md" onclick="window.location.href=#">User Activity</button>
+    <br>
+    <br>
+    </div>
+    
+    
+</body>
+</html>
+
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

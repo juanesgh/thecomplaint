@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<div class = "c"><TC>Posts</TC></div>
+<br>
+<% @posts.each do |post| %>
+  <div class = "row c">
+    <%= link_to post do %>
+      <div class = "">
+        <td>
+          <% if post.postimages.length > 0%>
+            <%= image_tag(post.postimages[0].variant(resize: "150x150")) %>
+          <% else %>
+            <%= image_tag("noIMAGE.jpg", width: '199', heigth: '199')%>
+          <% end %>
+        </td>
+        <td>
+        </td>
+        <td>
+          <%= post.title%>
+        </td>
+        <td>
+          Likes: <%= post.user_like_posts.length%>
+        </td>
+        <td>
+          Open: <%= post.open %>
+        </td>
+      </div>
+    <% end  %>
+  </div>
+<% end %>
+
+
+<br>
+
+<%= link_to 'New Post', new_post_path %>

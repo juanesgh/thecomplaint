@@ -1,0 +1,12 @@
+<div class = "c">
+    <table class = "scroll">
+        <tr>
+            <th>User Name</th>
+        </tr>
+        <% @usr.each do |u| %>
+            <tr>
+                <td><%= link_to u.name, geofences_viewadmin_path(:user_id => u.id), class: "btn btn-primary btn-md" %></td>
+            </tr>
+        <% end %>
+    </table>
+</div>

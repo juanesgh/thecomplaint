@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Complait</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <div class="row">
+      <wrapper class="my-color">
+        <div class = "c">  
+          <% flash.each do |key, message|%>
+            <div class = key><%= message%></div>
+          <% end %>
+        </div>
+        <div class = "col-lg-10">
+        </div>
+        <div class = "col-md-1">
+          <input type="button" class="bttn1" onclick="window.location.href='/userhome'" value="Home" /> 
+        </div>
+        <div class = "col-md-1">
+          <% if user_signed_in?%>
+            <%= button_to 'Log Out', destroy_user_session_path(), :method => :delete, class: "bttn1" %>
+          <% else %>
+            <%= button_to 'Log In', '/users/sign_in', class: "bttn1"%>
+          <% end %>
+          <% if user_signed_in?%>
+            <% if current_user.admin or current_user.superadmin %>
+              <%= link_to "Admin", '/useradmin/', class: "btn btn-md btn"%>
+            <% end %>
+            <% if current_user.superadmin %>
+              <%= link_to "SuperAdmin", '/adminsystem/', class: "btn btn-md btn"%>
+            <% end %>
+          <% end %>
+        </div>
+      </wrapper>
+    </div>
+    
+    <div class = "row ">
+      <div class = "col-md-5">
+      </div>
+      <div class = "col-md-2">
+        <% if user_signed_in? %>
+          <%= form_tag(postsearchs_path) do %>
+            <%= text_field_tag :terms %>
+            <%= submit_tag 'Search', :class => "btn btn-primary btn-md" %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class = "col-md-5">
+      </div>
+    </div>
+    <br>
+  </head>
+
+  <body>
+  <div id="page-container">
+   <div id="content-wrap">
+     <!-- all other page content -->
+    <%= yield %>
+    <br>
+    
+  </div>
+  <footer id="footer">
+    <div class="c">
+      <p>Dev By Juan / Iñaki</p>
+    </div>
+  </footer>
+ </div>
+  </body>
+  
+
+  
+</div>
+</html>

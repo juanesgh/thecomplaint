@@ -1,0 +1,30 @@
+<div class = "c">
+    <TC>Users</TC>
+    <div class = "scroll2">
+        <% @us.each do |usr| %>
+            <tr>
+                <div class = "row">
+                    <%= link_to usr do %>
+                        <div><td>Name: <%= usr.name %></td><td>  Last Name: <%= usr.lastname %></td><td>   Nick: <%= usr.nick %></td></div>
+                    <% end %>
+                </div>
+            </tr>
+        <% end %>
+    </div>
+    <br>
+    <br>
+    <TC>Posts</TC>
+    <div class = "c">
+        <div class = "scroll2">
+            <% @pos.each do |p| %>
+                <%= link_to p do %>
+                    <div>
+                        <tr>
+                            <td>Title: <%= p.title %></td><td>  Author: <%= User.find(p.user_id).name %> </td>
+                        </tr>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>

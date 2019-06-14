@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin System</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <titulo>Administration System</titulo>
+    <hr>
+    <div align="right">
+    <button class="btn btn-primary btn-md" onclick="window.location.href=#">New Admin</button>
+    </div>
+    <br>
+    <table align="center">
+      <tr>
+        <th>Name</th>
+        <th>Admin?</th>
+        <th>SuperAdmin</th>
+        <th>Make/Revoke Admin</th>
+        <th>Make/Revoke SuperAdmin</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Ban</th>
+        <th>Blacklist</th>
+      </tr>
+      <tr>
+        <% @user.each do |u|%>
+          <tr>
+            <td><%= link_to u.name, u %></td>
+            <td><%= u.admin %></td>
+            <td><%= u.superadmin %></td>
+            <td>
+              <% if u.admin %>
+                <%= button_to "Revoke", revokeadmin_path(:user_id =>  u.id), :class => "btn btn-danger btn-md" %>
+              <% else %>
+                <%= button_to "Admin", makeadmin_path(:user_id =>  u.id), :class => "btn btn-primary btn-md" %>
+              <% end %>
+            </td>
+            <td>
+              <% if u.superadmin %>
+                <%= button_to "Revoke", revokesuperadmin_path(:user_id =>  u.id), :class => "btn btn-danger btn-md" %>
+              <% else %>
+                <%= button_to "SuperAdmin", makesuperadmin_path(:user_id =>  u.id), :class => "btn btn-primary btn-md" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tr>
+    </table>
+
+</body>
+ 
+</html>

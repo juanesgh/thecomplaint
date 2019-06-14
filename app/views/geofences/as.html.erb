@@ -1,0 +1,7 @@
+<div class = 'c'>
+    <%= form_tag(checkfence_path(:user_id => @usr_id)) do %>
+        <tr>Be careful with the location you enter, each user is assigned to a city, type carefully</tr>
+        <%= text_field_tag :location %>
+        <%= submit_tag 'Add', :class => "btn btn-primary btn-md" %>
+    <% end %>
+</div>
