@@ -9,5 +9,12 @@ class DumpstersController < ApplicationController
     def restoredump
         id = params[:post_id]
         Post.find(id).update(dumpster: false)
+        redirect_to dumpster_path()
+    end
+
+    def makedump
+        post = params[:post_id]
+        Post.find(post).update(dumpster: true)
+        redirect_to dumpster_path()
     end
 end
