@@ -42,7 +42,7 @@
               <%= link_to "Edit", edit_user_path(u), class: "btn btn-primary btn-md"%>
             </td>
             <td>
-              <%= link_to "Blacklist", blacklistuser_path(:user => u.id), class: "btn btn-primary btn-md"%>
+              <%= link_to "Blacklist", blacklist_blacklistuser_path(:user => u.id), class: "btn btn-primary btn-md"%>
             </td>
           </tr>
         <% end %>
