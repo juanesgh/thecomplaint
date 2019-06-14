@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   get '/changepassword', to: 'changepasswords#changepassword'###############
   get '/dumpster', to: 'dumpsters#dumpster'####################
   get '/restoredump', to: 'dumpster#restoredump'
-  get '/makedumpster', to: 'dumspter#makedumpster'
+  get '/makedumpster', to: 'dumpspter#makedumpster'
   get '/editprofile', to: 'editprofiles#editprofile'
   get '/home', to: 'homes#home'##########
   get '/passrec', to: 'passrecs#passrec'########

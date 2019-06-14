@@ -5,7 +5,9 @@
         </tr>
         <% @usr.each do |u| %>
             <tr>
-                <td><%= link_to u.name, geofences_viewadmin_path(:user_id => u.id), class: "btn btn-primary btn-md" %></td>
+                <% if !u.superadmin or u.superadmin == nil %>
+                    <td><%= link_to u.name, geofences_viewadmin_path(:user_id => u.id), class: "btn btn-primary btn-md" %></td>
+                <% end %>
             </tr>
         <% end %>
     </table>
