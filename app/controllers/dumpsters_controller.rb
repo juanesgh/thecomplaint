@@ -12,7 +12,7 @@ class DumpstersController < ApplicationController
         redirect_to dumpster_path()
     end
 
-    def makedump
+    def makedumpster
         post = params[:post_id]
         Post.find(post).update(dumpster: true)
         redirect_to dumpster_path()
