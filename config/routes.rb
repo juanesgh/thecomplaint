@@ -41,8 +41,8 @@ Rails.application.routes.draw do
   get '/adminreg', to: 'adminregs#adminreg'###########
   get '/changepassword', to: 'changepasswords#changepassword'###############
   get '/dumpster', to: 'dumpsters#dumpster'####################
-  get '/restoredump', to: 'dumpster#restoredump'
-  get '/makedumpster', to: 'dumpster#makedumpster'
+  get '/restoredump', to: 'dumpsters#restoredump'
+  patch '/makedumpster', to: 'dumpsters#makedumpster'
   get '/editprofile', to: 'editprofiles#editprofile'
   get '/home', to: 'homes#home'##########
   get '/passrec', to: 'passrecs#passrec'########
