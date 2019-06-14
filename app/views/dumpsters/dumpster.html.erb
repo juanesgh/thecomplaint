@@ -6,13 +6,8 @@
 </head>
 <body>
     <titulo>Dumpster</titulo>
-    <div align="right">
-        <input type="button" value="Logout" />
-    </div>
     <hr>
-    <br>
-    <div align="right">
-        <input type="text" placeholder="Search..">
+    
     </div>
     <br>
     <br>
@@ -25,26 +20,14 @@
         
       </tr>
       <tr>
-        <td>User 1</td>
-        <td>24</td>
-        <td>A Intresting Title</td>
-        <td><button class="btn btn-primary btn-md">Restore</button></td>
-        
+        <% @dump.each do |d|%>
+          <td><%= User.find(d.user_id).name %></td>
+          <td><%= Post.find(d.id).id %></td>
+          <td><%= Post.find(d.id).title %> </td>
+          <td><%= link_to "Restore", restoredump_path(:post_id => d.id), class: "btn btn-success btn-md"%></td>
+        <% end %>
       </tr>
-      <tr>
-        <td>User 2</td>
-        <td>122</td>
-        <td>A Meh Title</td>
-        <td><button class="btn btn-primary btn-md">Restore</button></td>
-        
-      </tr>
-      <tr>
-        <td>User 3</td>
-        <td>3</td>
-        <td>Some Title</td>
-        <td><button class="btn btn-primary btn-md">Restore</button></td>
-        
-      </tr>
+      
     </table>
     <br>
 </body>

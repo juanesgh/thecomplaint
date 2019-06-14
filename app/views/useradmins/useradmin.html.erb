@@ -14,7 +14,6 @@
       <tr>
         <th>User</th>
         <th>Role</th>
-        <th>Last Access</th>
         <th>Password</th>
         <th>Delete</th>
         <th>Blacklist</th>
@@ -33,7 +32,6 @@
                 User
               <% end %>
             </td>
-            <td>3/3/2019</td>
             <td>
               <% if (!u.admin and !u.superadmin) or (current_user.superadmin) %>
                 <%= button_to "Change Password", changepassword_path(:user => u.id), :class => "btn btn-primary btn-md" %>
