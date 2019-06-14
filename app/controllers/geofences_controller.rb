@@ -9,7 +9,7 @@ class GeofencesController < ApplicationController
 
     def viewadmin
         @usr_id = params[:user_id]
-        @fence = UserPlace.find_by(user_id: @usr_id)
+        @fence = UserPlace.all.where(user_id: @usr_id)
     end
 
     def as
