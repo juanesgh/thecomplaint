@@ -27,12 +27,12 @@
             </div>
             <div>
               <% if current_user.superadmin %>
-                <%= link_to "Geofences", geofences_path()%>
+                <%= link_to "Geofences", geofences_path(), class: "btn btn-primary btn-md" %>
               <% end %>
             </div>
             <div>
               <% if current_user.admin or current_user.superadmin %>
-                <%= link_to "Blacklist", blacklist_path()%>
+                <%= link_to "Blacklist", blacklist_path(), class: "btn btn-primary btn-md"%>
               <% end %>
             </div>
           <% end %>
@@ -45,10 +45,10 @@
           <% end %>
           <% if user_signed_in?%>
             <% if current_user.admin or current_user.superadmin %>
-              <%= link_to "Admin", '/useradmin/', class: "btn btn-md btn"%>
+              <%= link_to "Admin", '/useradmin/', class: "btn btn-success btn-md"%>
             <% end %>
             <% if current_user.superadmin %>
-              <%= link_to "SuperAdmin", '/adminsystem/', class: "btn btn-md btn"%>
+              <%= link_to "SuperAdmin", '/adminsystem/', class: "btn btn-success btn-md"%>
             <% end %>
           <% end %>
         </div>
