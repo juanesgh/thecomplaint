@@ -1,6 +1,7 @@
 class BlacklistsController < ApplicationController
   before_action :check
   before_action :is_admin
+  
   def blacklist
     if current_user.admin or current_user.superadmin
       @bl = User.all.where(blacklist: true)

@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+    before_action :check
 
     def create
         @message = Message.new(message_params)

@@ -1,5 +1,6 @@
 class PostsearchsController < ApplicationController
-
+    before_action :check
+    
     def search 
         term = params[:terms].tr(',.<>!@#$%^&*()_={]}["|\/?><;:', '')
         term = term.downcase
